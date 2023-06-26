@@ -7,17 +7,17 @@ from langchain.vectorstores import FAISS
 from langchain.chains.question_answering import load_qa_chain
 from langchain.llms import OpenAI
 
-g = Goose({'use_meta_language': False, 'target_language':'pt'})
+g = Goose({"use_meta_language": False, "target_language":"pt"})
 
-url = 'URL'
+url = ""
 
 site = g.extract(url)
 content = site.cleaned_text
 
-with open('env.json') as env:
+with open("env.json") as env:
   data = json.load(env)
 
-api_key = data['api_key']
+api_key = data["api_key"]
 os.environ["OPENAI_API_KEY"] = api_key
 
 text_splitter = CharacterTextSplitter(
